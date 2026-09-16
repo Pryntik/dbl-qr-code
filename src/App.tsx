@@ -1,5 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import QRCode from "react-qr-code";
+import QRCodeBox from './QRCodeBox';
 
 /**
  * Pryntik : CMTHGEEHJMB
@@ -19,6 +21,8 @@ const App = () => {
     const [resultCode1, setResultCode1] = useState("");
     const [resultCode2, setResultCode2] = useState("");
     const [resultCode3, setResultCode3] = useState("");
+
+    const hasResult = !!resultCode1 || !!resultCode2 || !!resultCode3;
 
     const computeResult = (friendCode: string) => {
         if (friendCode.length === 7 && yourCode.length === 11) return startCode + friendCode + yourCode;
@@ -53,12 +57,14 @@ const App = () => {
                 <input type="text" maxLength={7} placeholder='Friend code 2' value={friendCode2} onChange={(e) => setFriendCode2(e.target.value)}/>
                 <input type="text" maxLength={7} placeholder='Friend code 3' value={friendCode3} onChange={(e) => setFriendCode3(e.target.value)}/>
             </div>
-            <div className="result-codes">
-                <span className='title'>Result codes</span>
-                <input type="text" placeholder='Result 1' value={resultCode1} readOnly/>
-                <input type="text" placeholder='Result 2' value={resultCode2} readOnly/>
-                <input type="text" placeholder='Result 3' value={resultCode3} readOnly/>
-            </div>
+            {hasResult && (
+                <div className="result-codes">
+                    <span className='title'>Result codes</span>
+                    {resultCode1 && <QRCodeBox nbFriend={1} code={friendCode1} value={resultCode1}/>}
+                    {resultCode2 && <QRCodeBox nbFriend={2} code={friendCode2} value={resultCode2}/>}
+                    {resultCode3 && <QRCodeBox nbFriend={3} code={friendCode3} value={resultCode3}/>}
+                </div>
+            )}
         </div>
     );
 };
