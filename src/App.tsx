@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import QRCode from "react-qr-code";
 import QRCodeBox from './QRCodeBox';
 
 /**
@@ -14,31 +13,34 @@ import QRCodeBox from './QRCodeBox';
 
 const App = () => {
     const startCode = "4,";
+    const friendItem = (nbFriend: number) => `friend-code-${nbFriend}`;
     const [yourCode, setYourCode] = useState("CMTHGEEHJMB");
-    const [friendCode1, setFriendCode1] = useState("");
-    const [friendCode2, setFriendCode2] = useState("");
-    const [friendCode3, setFriendCode3] = useState("");
+    const [friendCode1, setFriendCode1] = useState(localStorage.getItem(friendItem(1)) || "");
+    const [friendCode2, setFriendCode2] = useState(localStorage.getItem(friendItem(2)) || "");
+    const [friendCode3, setFriendCode3] = useState(localStorage.getItem(friendItem(3)) || "");
     const [resultCode1, setResultCode1] = useState("");
     const [resultCode2, setResultCode2] = useState("");
     const [resultCode3, setResultCode3] = useState("");
-
     const hasResult = !!resultCode1 || !!resultCode2 || !!resultCode3;
 
-    const computeResult = (friendCode: string) => {
-        if (friendCode.length === 7 && yourCode.length === 11) return startCode + friendCode + yourCode;
+    const computeResult = (friendCode: string, nbFriend: number) => {
+        if (yourCode.length === 11 && friendCode.length === 7) {
+            localStorage.setItem(friendItem(nbFriend), friendCode);
+            return startCode + friendCode + yourCode;
+        }
         return "";
     };
 
     useEffect(() => {
-        setResultCode1(computeResult(friendCode1));
+        setResultCode1(computeResult(friendCode1, 1));
     }, [friendCode1, yourCode]);
 
     useEffect(() => {
-        setResultCode2(computeResult(friendCode2));
+        setResultCode2(computeResult(friendCode2, 2));
     }, [friendCode2, yourCode]);
 
     useEffect(() => {
-        setResultCode3(computeResult(friendCode3));
+        setResultCode3(computeResult(friendCode3, 3));
     }, [friendCode3, yourCode]);
 
     return (
