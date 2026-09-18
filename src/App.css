@@ -12,18 +12,28 @@
 }
 
 .login-button {
+    cursor: pointer;
     width: 120px;
     margin-right: 20px;
     padding: 5px 10px;
     font-size: 24px;
     font-weight: bold;
+    border: 1px solid red;
     color: red;
     background-color: var(--color-black-2);
-    border: 1px solid red;
-    cursor: pointer;
 }
 
-input[type="text"] {
+.login-button.logged-out {
+    color: red;
+    border-color: red;
+}
+
+.login-button.logged-in {
+    color: green;
+    border-color: green;
+}
+
+.your-code > input, .friend-codes > input {
     width: 40%;
     min-width: 300px;
     margin-bottom: 10px;

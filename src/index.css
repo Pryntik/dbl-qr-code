@@ -2,6 +2,8 @@
     --color-black-1: #202020;
     --color-black-2: #262626;
     --color-orange: #be5501;
+    --color-blue-1: #003962;
+    --color-blue-2: #44a1ff;
 }
 
 html, body, #root, .app {

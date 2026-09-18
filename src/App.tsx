@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import QRCodeBox from './QRCodeBox';
+import LoginPopup from './LoginPopup';
 
 /**
  * Pryntik : CMTHGEEHJMB
@@ -14,6 +15,8 @@ import QRCodeBox from './QRCodeBox';
 const App = () => {
     const startCode = "4,";
     const friendItem = (nbFriend: number) => `friend-code-${nbFriend}`;
+    const [popupIsOpen, setPopupIsOpen] = useState(false);
+    const [isLogged, setIsLogged] = useState(false);
     const [yourCode, setYourCode] = useState("CMTHGEEHJMB");
     const [friendCode1, setFriendCode1] = useState(localStorage.getItem(friendItem(1)) || "");
     const [friendCode2, setFriendCode2] = useState(localStorage.getItem(friendItem(2)) || "");
@@ -47,17 +50,18 @@ const App = () => {
         <div className="app">
             <div className="nav-bar">
                 <span>DBL QR Code</span>
-                <button className="login-button">Login</button>
+                <button className={`login-button ${isLogged ? 'logged-in' : 'logged-out'}`} onClick={() => setPopupIsOpen(!popupIsOpen)}>Login</button>
             </div>
+            <LoginPopup isOpen={popupIsOpen} setIsOpen={setPopupIsOpen} isLogged={isLogged} setIsLogged={setIsLogged}/>
             <div className="your-code">
                 <span className='title'>Your code</span>
-                <input type="text" maxLength={11} placeholder='Your code' value={yourCode} onChange={(e) => setYourCode(e.target.value)}/>
+                <input id="your-code" type="text" maxLength={11} placeholder='Your code' value={yourCode} onChange={(e) => setYourCode(e.target.value)}/>
             </div>
             <div className="friend-codes">
                 <span className='title'>Friend codes</span>
-                <input type="text" maxLength={7} placeholder='Friend code 1' value={friendCode1} onChange={(e) => setFriendCode1(e.target.value)}/>
-                <input type="text" maxLength={7} placeholder='Friend code 2' value={friendCode2} onChange={(e) => setFriendCode2(e.target.value)}/>
-                <input type="text" maxLength={7} placeholder='Friend code 3' value={friendCode3} onChange={(e) => setFriendCode3(e.target.value)}/>
+                <input id="friend-code-1" type="text" maxLength={7} placeholder='Friend code 1' value={friendCode1} onChange={(e) => setFriendCode1(e.target.value)}/>
+                <input id="friend-code-2" type="text" maxLength={7} placeholder='Friend code 2' value={friendCode2} onChange={(e) => setFriendCode2(e.target.value)}/>
+                <input id="friend-code-3" type="text" maxLength={7} placeholder='Friend code 3' value={friendCode3} onChange={(e) => setFriendCode3(e.target.value)}/>
             </div>
             {hasResult && (
                 <div className="result-codes">
