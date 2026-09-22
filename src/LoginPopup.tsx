@@ -29,9 +29,12 @@ const LoginPopup = ({isOpen, setIsOpen, isLogged, setIsLogged}: LoginPopupProps)
                 <div className="login-popup">
                     <input id="username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                     <input id="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <button className="submit-button" onClick={handleLogin}>Submit</button>
+                    <div className="button-zone">
+                        <button className="sign-button" onClick={handleLogin}>Sign Up</button>
+                        <button className="sign-button" onClick={handleLogin}>Sign In</button>
+                    </div>
                 </div>
-            )}        
+            )}
         </>
     );
 }

@@ -24,7 +24,13 @@
     color: white;
 }
 
-.submit-button {
+.button-zone {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.sign-button {
     cursor: pointer;
     height: 30px;
     width: 40%;
@@ -35,6 +41,6 @@
     border-radius: 10px;
 }
 
-.submit-button:hover {
+.sign-button:hover {
     background-color: var(--color-blue-1);
 }
