@@ -1,0 +1,64 @@
+# =========================================================================
+# SECTION FRONTEND (React / Node.js)
+# =========================================================================
+
+# dépendances
+/node_modules
+/.pnp
+.pnp.js
+
+# dossiers de build production (React, Vite, Next, etc.)
+/build
+/dist
+
+# logs de debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# variables d'environnement locales (CONTIENNENT VOS SECRETS / MDP)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =========================================================================
+# SECTION BACKEND (C# .NET / Entity Framework)
+# =========================================================================
+
+# Dossiers de compilation (TRÈS IMPORTANT)
+# Ignore les exécutables, les dll et les fichiers temporaires générés par dotnet build
+[Bb]in/
+[Oo]bj/
+
+# Fichiers de configuration utilisateur de Visual Studio / Rider
+*.user
+*.userosscache
+*.sln.docstates
+
+# Secrets de développement .NET (Alternative ou complément aux .env)
+launchSettings.json
+appsettings.Development.json
+usersecrets.json
+
+# Caches et fichiers de diagnostic .NET
+.sharpcompress/
+_ReSharper*/
+*.suo
+*.user
+*.sln.docstates
+
+# Outils et crash dumps
+*.crash
+*.stackdump
+
+# =========================================================================
+# SECTION ÉDITEURS & SYSTÈME (Générique)
+# =========================================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.fake
